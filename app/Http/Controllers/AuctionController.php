@@ -23,7 +23,7 @@ class AuctionController extends Controller
         $auctions = Auction::query();
 
         return DataTables::of($auctions)->addColumn('action', function($auction){
-                return '<a href="' . route('auctions.edit', $auction->id) .'">'.$auction->name.'</a>';
+                return '<a href="' . route('auctions.edit', $auction->id) .'" data-id="'.$auction->id.'" data-toggle="modal" data-target="#exampleModal" class="btn btn-default">Edit</a>';
         })->make(true);
 
     }
@@ -56,7 +56,7 @@ class AuctionController extends Controller
      */
     public function show(Auction $auction)
     {
-        //
+        return $auction;
     }
 
     /**
