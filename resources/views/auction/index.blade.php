@@ -15,7 +15,8 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -25,25 +26,26 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form role="form">
+                    <form role="form" id="auction-form">
                         <div class="form-group">
                             <label>ID</label>
-                            <input type="text" class="form-control" id="id" placeholder=""/>
+                            <input type="text" class="form-control" name="id" id="id" placeholder=""/>
                         </div>
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" class="form-control"
-                                   id="name" placeholder="Auction name"/>
+                                   id="name" name="name" placeholder="Auction name"/>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <input type="text" class="form-control" id="description" placeholder="Description"/>
+                            <input type="text" class="form-control" id="description" name="description"
+                                   placeholder="Description"/>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" id="update-auction" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -51,34 +53,64 @@
 @stop
 
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script>
-        $(function() {
+
+        $(function () {
             $('#auctions-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('auctions.data') !!}',
                 columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'name', name: 'name' },
-                    { data: 'description', name: 'description' },
-                    { data: 'action', name: 'action', orderable: false, searchable: false }
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'description', name: 'description'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
             });
         });
-        $("#exampleModal").on("show.bs.modal", function(e) {
+        $("#exampleModal").on("show.bs.modal", function (e) {
             id = $(e.relatedTarget).data("id");
-            url = "auctions/"+id;
-            let that = $(this);
+            url = "auctions/" + id;
+
             $.ajax({
                 cache: false,
                 type: 'get',
                 url: url,
-                data:  { 'id': id },
-                success: function(data) {
+                data: {'id': id},
+                success: function (data) {
                     $('input#id').val(data.id);
                     $('input#name').val(data.name);
                     $('input#description').val(data.description);
                 }
+            });
+        });
+        $("#exampleModal").on("show.bs.modal", function (e) {
+
+            $("#update-auction").click(function () {
+                let data = $("#auction-form").serialize();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    cache: false,
+                    type: 'patch',
+                    url: "auctions/" + id,
+                    data: data,
+                    success: function (data) {
+                        $("#exampleModal").hide();
+                        Swal.fire({
+                            "title": data
+                        });
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+
+                    }
+                });
             });
         });
     </script>

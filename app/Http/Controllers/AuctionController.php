@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Auction;
+use App\Http\Requests\AuctionFormRequest;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -77,9 +78,17 @@ class AuctionController extends Controller
      * @param  \App\Auction  $auction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Auction $auction)
+    public function update(AuctionFormRequest $request, Auction $auction)
     {
-        //
+        try {
+            $data = $request->validated();
+            $auction->fill($data);
+            $auction->save();
+            return response()->json('Auction updated!');
+        } catch (\Exception $e) {
+            dd($e);
+        }
+        return response()->json('something went wrong');
     }
 
     /**
