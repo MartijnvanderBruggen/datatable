@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Auction;
+use App\Events\AuctionUpdatedEvent;
 use App\Http\Requests\AuctionFormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class AuctionController extends Controller
@@ -84,9 +86,10 @@ class AuctionController extends Controller
             $data = $request->validated();
             $auction->fill($data);
             $auction->save();
+            event(new AuctionUpdatedEvent($auction));
             return response()->json('Auction updated!');
         } catch (\Exception $e) {
-            dd($e);
+            Log::error('Auction not updated', ['error' => $e]);
         }
         return response()->json('something went wrong');
     }
