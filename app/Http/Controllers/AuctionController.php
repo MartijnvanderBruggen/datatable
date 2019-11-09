@@ -26,7 +26,10 @@ class AuctionController extends Controller
         $auctions = Auction::query();
 
         return DataTables::of($auctions)->addColumn('action', function($auction){
-                return '<a href="' . route('auctions.edit', $auction->id) .'" data-id="'.$auction->id.'" data-toggle="modal" data-target="#exampleModal" class="btn btn-default">Edit</a>';
+
+                $return_data = '<a href="' . route('auctions.edit', $auction->id) .'" data-id="'.$auction->id.'" data-toggle="modal" data-target="#exampleModal" class="btn btn-default btn-info">Edit</a>';
+                $return_data .= '<a href="javascript:;" data-id="'.$auction->id.'" class="delete-auction btn btn-default btn-danger">Delete</a>';
+                return $return_data;
         })->make(true);
 
     }
@@ -102,6 +105,14 @@ class AuctionController extends Controller
      */
     public function destroy(Auction $auction)
     {
-        //
+        try
+        {
+            $auction->delete();
+            return response()->json('Auction deleted.');
+        }
+        catch(\Exception $e)
+        {
+            return response()->json('Something went wrong when deleting the auction');
+        }
     }
 }

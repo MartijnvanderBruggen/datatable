@@ -55,8 +55,14 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script>
+        //on documentload, load datatable
 
         $(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $('#auctions-table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -68,6 +74,28 @@
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
             });
+            $(document).on('click', '.delete-auction', function (e) {
+                console.log(e);
+                let id = $(this).data("id");
+
+                e.preventDefault();
+
+                $.ajax({
+                    cache:false,
+                    type:'delete',
+                    url:'auctions/' + id,
+
+                    success: (data) => {
+                        Swal.fire({
+                            "title": data
+                        });
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    }
+                });
+            });
+
         });
         $("#exampleModal").on("show.bs.modal", function (e) {
             id = $(e.relatedTarget).data("id");
@@ -108,10 +136,12 @@
                         setTimeout(function () {
                             location.reload();
                         }, 2000);
-
                     }
                 });
             });
         });
+
+
+
     </script>
 @endpush
