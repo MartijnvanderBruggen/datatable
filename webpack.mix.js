@@ -12,4 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/administration/admin-datatable.js','public/js/administration/admin-datatable.js')
    .sass('resources/sass/app.scss', 'public/css');

@@ -22,3 +22,4 @@ Route::get('auctions.data','AuctionController@fetchData')->name('auctions.data')
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminPanelController@index')->name('admin');
