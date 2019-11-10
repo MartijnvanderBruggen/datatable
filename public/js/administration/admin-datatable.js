@@ -93,7 +93,20 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-console.log('test');
+$(document).ready(function () {
+  $('#user-table').DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: '/admin.data',
+    columns: [{
+      data: 'id',
+      name: 'id'
+    }, {
+      data: 'name',
+      name: 'name'
+    }]
+  });
+});
 
 /***/ }),
 
@@ -104,7 +117,7 @@ console.log('test');
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/vagrant/auction/resources/js/administration/admin-datatable.js */"./resources/js/administration/admin-datatable.js");
+module.exports = __webpack_require__(/*! C:\Users\marti\Projects\auction\resources\js\administration\admin-datatable.js */"./resources/js/administration/admin-datatable.js");
 
 
 /***/ })

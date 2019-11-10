@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+
 
 class AdminPanelController extends Controller
 {
+    public function fetchData()
+    {
+        $users = User::query();
+        return DataTables::of($users)->make(true);
+    }
     /**
      * Display a listing of the resource.
      *

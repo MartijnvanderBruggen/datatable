@@ -1,3 +1,11 @@
 $(document).ready(function(){
-    console.log('ready');
+    $('#user-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '/admin.data',
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'name', name: 'name'},
+        ]
+    });
 });

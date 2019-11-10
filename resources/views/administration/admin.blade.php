@@ -1,7 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="user-table"></div>
+<table id="user-table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+</table>
 @stop
 
 @push('scripts')
