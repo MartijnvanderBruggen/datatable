@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::resource('auctions','AuctionController');
 
 Route::get('auctions.data','AuctionController@fetchData')->name('auctions.data');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
