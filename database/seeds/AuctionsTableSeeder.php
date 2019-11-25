@@ -11,6 +11,8 @@ class AuctionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Auction::class,50)->create();
+        factory(App\Auction::class,50)->create()->each(function($auction){
+            $auction->images()->saveMany(factory(App\AuctionImage::class,3))->make();
+        });
     }
 }

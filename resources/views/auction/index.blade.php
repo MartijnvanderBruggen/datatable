@@ -5,7 +5,7 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
+            <th>Image</th>
             <th>Description</th>
             <th>actions</th>
         </tr>
@@ -69,7 +69,17 @@
                 ajax: '{!! route('auctions.data') !!}',
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'name', name: 'name'},
+                    {data: 'images.image_path', render: function ( data, type, row ) {
+
+                            var rdata;
+                        for(var i = 0; i < row.images.length;i++){
+                            console.info(row.images[i]);
+
+                             rdata += '<img src="'+ row.images[i].image_path+'"/><br>';
+                        }
+                        return rdata;
+
+                        }},
                     {data: 'description', name: 'description'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
@@ -140,8 +150,5 @@
                 });
             });
         });
-
-
-
     </script>
 @endpush

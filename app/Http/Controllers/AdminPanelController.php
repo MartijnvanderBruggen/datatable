@@ -15,7 +15,7 @@ class AdminPanelController extends Controller
         return DataTables::of($users)->make(true);
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.i
      *
      * @return \Illuminate\Http\Response
      */

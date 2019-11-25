@@ -23,7 +23,8 @@ class AuctionController extends Controller
     //processes ajax request from auction datatable.
     public function fetchData()
     {
-        $auctions = Auction::query();
+        $auctions = Auction::query()->with('images');
+        Log::info($auctions->first());
 
         return DataTables::of($auctions)->addColumn('action', function($auction){
             $return_data = '<a href="' . route('auctions.edit', $auction->id) .'" data-id="'.$auction->id.'" data-toggle="modal" data-target="#exampleModal" class="btn btn-default btn-info">Edit</a>';

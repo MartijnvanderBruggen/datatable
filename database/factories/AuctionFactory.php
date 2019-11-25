@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 $factory->define(Auction::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+
         'description' => $faker->paragraph,
         'user_id' => $faker->randomDigitNotNull
     ];

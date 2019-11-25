@@ -14,12 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware(['auth'])->group(function(){
+    Route::resource('auctions','AuctionController');
+    Route::get('/admin', 'AdminPanelController@index')->name('admin');
+});
 
-Route::resource('auctions','AuctionController');
 
 Route::get('auctions.data','AuctionController@fetchData')->name('auctions.data');
 Route::get('admin.data','AdminPanelController@fetchData')->name('admin.data')->middleware('isAdmin');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', 'AdminPanelController@index')->name('admin');
+

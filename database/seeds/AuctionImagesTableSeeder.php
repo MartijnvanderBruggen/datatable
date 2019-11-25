@@ -2,8 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-
-class UsersTableSeeder extends Seeder
+class AuctionImagesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +11,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class,5)->create();
+        factory(App\AuctionImage::class,50)->create();
     }
 }
