@@ -117,7 +117,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\marti\Projects\auction\resources\js\administration\admin-datatable.js */"./resources/js/administration/admin-datatable.js");
+module.exports = __webpack_require__(/*! /home/vagrant/auction/resources/js/administration/admin-datatable.js */"./resources/js/administration/admin-datatable.js");
 
 
 /***/ })

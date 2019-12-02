@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Auction extends Model
 {
-    protected $fillable = ['user_id','description'];
+    protected $fillable = ['user_id','category_id','description'];
 
     public function user()
     {
@@ -16,5 +16,10 @@ class Auction extends Model
     public function images()
     {
         return $this->hasMany('App\AuctionImage');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

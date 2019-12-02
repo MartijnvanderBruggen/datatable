@@ -10,6 +10,7 @@ $factory->define(Auction::class, function (Faker $faker) {
     return [
 
         'description' => $faker->paragraph,
-        'user_id' => $faker->randomDigitNotNull
+        'user_id' => $faker->randomDigitNotNull,
+        'category_id' => $faker->randomDigitNotNull
     ];
 });

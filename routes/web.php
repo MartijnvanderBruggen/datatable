@@ -17,6 +17,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function(){
     Route::resource('auctions','AuctionController');
     Route::get('/admin', 'AdminPanelController@index')->name('admin');
+    Route::resource('categories','CategoryController');
 });
 
 

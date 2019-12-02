@@ -1,6 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
+<div id="app">
+    <select-category>
+
+    </select-category>
     <table class="table table-bordered" id="auctions-table">
         <thead>
         <tr>
@@ -12,7 +16,7 @@
         </thead>
     </table>
     <!-- Button trigger modal -->
-
+</div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -70,10 +74,8 @@
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'images.image_path', render: function ( data, type, row ) {
-
-                            var rdata;
+                        var rdata = '';
                         for(var i = 0; i < row.images.length;i++){
-                            console.info(row.images[i]);
 
                              rdata += '<img src="'+ row.images[i].image_path+'"/><br>';
                         }
@@ -85,7 +87,7 @@
                 ]
             });
             $(document).on('click', '.delete-auction', function (e) {
-                console.log(e);
+
                 let id = $(this).data("id");
 
                 e.preventDefault();
