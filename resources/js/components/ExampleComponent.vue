@@ -5,8 +5,8 @@
                 <div class="card">
                     <div class="card-header">Example Component</div>
 
-                    <div class="card-body">
-                        I'm an example component.
+                    <div class="card-body" v-model="message">
+                        @{{message}}
                     </div>
                 </div>
             </div>
@@ -16,8 +16,14 @@
 
 <script>
     export default {
+        data(){
+            message = 'test';
+        },
         mounted() {
-            console.log('Component mounted.')
+            window.Echo.channel(`auctions`).notification((notification) => {
+                console.log(notification);
+                sessionStorage.setItem("notification", notification.auction.id);
+            });
         }
     }
 </script>

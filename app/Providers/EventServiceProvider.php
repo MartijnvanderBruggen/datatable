@@ -21,6 +21,7 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\AuctionUpdatedEvent' => [
             'App\Listeners\AuctionUpdatedListener',
         ],
+
     ];
 
     /**

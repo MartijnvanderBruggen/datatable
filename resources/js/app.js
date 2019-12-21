@@ -39,5 +39,31 @@ Vue.component('select-category', {
             '<option :value="category.id" v-for="category in categories">{{category.name}}</option>' +
         '</select>'
 });
+Vue.component('message', {
+    data: function(){
+        return {
+            message: 'hi',
+        }
+    },
+    mounted() {
+       this.init();
+    },
+    methods:{
+        init: function() {
+            console.log('in init function');
+            Echo.channel('auctions')
+                .listen( 'AuctionUpdatedEvent',(message) => {
+                    this.message = message;
+                });
+        }
+    },
+
+
+
+    template:
+        '<div >' +
+            '<p>{{ message }}</p>' +
+        '</div>'
+});
 app = new Vue({ el: '#app' });
 

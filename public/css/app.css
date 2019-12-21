@@ -8749,3 +8749,8 @@ a.text-dark:hover {
   visibility: hidden !important;
 }
 
+html,
+body {
+  background: rgba(0, 0, 0, 0.5);
+}
+

@@ -2,9 +2,11 @@
 
 @section('content')
 <div id="app">
+    <div id="user" hidden>{{auth()->user()}}</div>
     <select-category>
 
     </select-category>
+    <div id="message"></div>
     <table class="table table-bordered" id="auctions-table">
         <thead>
         <tr>
@@ -58,8 +60,11 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="{{asset('js/listen.js')}}"></script>
     <script>
         //on documentload, load datatable
+
+
 
         $(function () {
             $.ajaxSetup({
@@ -102,7 +107,7 @@
                             "title": data
                         });
                         setTimeout(function () {
-                            location.reload();
+                            $('#auctions-table').reload();
                         }, 2000);
                     }
                 });
@@ -147,6 +152,7 @@
                         });
                         setTimeout(function () {
                             location.reload();
+
                         }, 2000);
                     }
                 });

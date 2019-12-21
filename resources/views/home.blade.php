@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <message></message>
 
                 </div>
             </div>
@@ -22,3 +22,6 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+    <script src="{{asset('js/listen.js')}}"></script>
+@endpush
