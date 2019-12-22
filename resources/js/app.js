@@ -42,7 +42,7 @@ Vue.component('select-category', {
 Vue.component('message', {
     data: function(){
         return {
-            message: 'hi',
+            message: 'No recent events...',
         }
     },
     mounted() {
@@ -50,7 +50,6 @@ Vue.component('message', {
     },
     methods:{
         init: function() {
-            console.log('in init function');
             Echo.channel('auctions')
                 .listen( 'AuctionUpdatedEvent',(message) => {
                     this.message = message;

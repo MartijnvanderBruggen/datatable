@@ -58326,7 +58326,6 @@ Vue.component('select-category', {
 Vue.component('message', {
   data: function data() {
     return {
-      messages: [],
       message: 'hi'
     };
   },

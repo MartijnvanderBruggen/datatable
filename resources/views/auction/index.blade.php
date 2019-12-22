@@ -12,7 +12,10 @@
         <tr>
             <th>Id</th>
             <th>Image</th>
+            <th>Title</th>
             <th>Description</th>
+            <th>Current Offer</th>
+            <th>Time left</th>
             <th>actions</th>
         </tr>
         </thead>
@@ -42,6 +45,7 @@
                             <input type="text" class="form-control"
                                    id="name" name="name" placeholder="Auction name"/>
                         </div>
+
                         <div class="form-group">
                             <label>Description</label>
                             <input type="text" class="form-control" id="description" name="description"
@@ -60,12 +64,7 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script src="{{asset('js/listen.js')}}"></script>
     <script>
-        //on documentload, load datatable
-
-
-
         $(function () {
             $.ajaxSetup({
                 headers: {
@@ -87,7 +86,10 @@
                         return rdata;
 
                         }},
+                    {data:'title', name:'title'},
                     {data: 'description', name: 'description'},
+                    {data: 'price', name: 'price'},
+                    {data: 'duration', name: 'duration'},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
             });

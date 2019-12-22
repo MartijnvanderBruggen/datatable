@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AuctionImage extends Model
 {
-    protected $fillable = ['auction_id', 'image_path'];
+    protected $guarded = [];
 
     public function auction()
     {

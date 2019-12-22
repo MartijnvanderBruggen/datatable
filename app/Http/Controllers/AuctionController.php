@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Auction;
 use App\Events\AuctionUpdatedEvent;
 use App\Http\Requests\AuctionFormRequest;
+use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
@@ -51,7 +52,22 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'auction-title' => 'required',
+            'auction-description' => 'required',
+            'minimum-amount' => 'required|numeric',
+            'auction-duration' => 'required|numeric',
+        ]);
+
+        $auction = Auction::create([
+            'user_id' => auth()->user()->id,
+            'category_id' => '1',
+            'description' => $request['auction-description'],
+            'title' =>$request['auction-title'],
+            'price' => $request['minimum-amount'],
+            'duration' => $request['auction-duration'],
+        ]);
+        event(new AuctionCreated($auction));
     }
 
     /**

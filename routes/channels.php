@@ -13,3 +13,7 @@
 Broadcast::channel('auctions', function() {
     return true;
 });
+Broadcast::channel('auction-created', function() {
+    return true;
+});
+
