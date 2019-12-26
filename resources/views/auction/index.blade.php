@@ -60,7 +60,11 @@
             </div>
         </div>
     </div>
+    @modal
+    @endmodal
 @stop
+
+
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
@@ -109,7 +113,7 @@
                             "title": data
                         });
                         setTimeout(function () {
-                            $('#auctions-table').reload();
+                            location.reload();
                         }, 2000);
                     }
                 });
@@ -160,5 +164,21 @@
                 });
             });
         });
+        $("#save-auction").click((e) => {
+            //@todo:validate
+            let formValues = $("#create-auction").serialize();
+            axios.post('/auctions', formValues).then(function (response) {
+                $("#create-auction-modal").modal('hide');
+                location.reload();
+            }).catch(function (error) {
+
+                console.log(error);
+            });
+        });
+        $("#create-auction-button").on("click", function(e){
+            e.preventDefault();
+            $("#create-auction-modal").modal('show');
+        });
+
     </script>
 @endpush

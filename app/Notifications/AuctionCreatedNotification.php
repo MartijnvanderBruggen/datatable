@@ -8,7 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 
-class AuctionCreated extends Notification implements ShouldQueue
+class AuctionCreatedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

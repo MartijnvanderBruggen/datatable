@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Auction;
+use App\Events\AuctionCreatedEvent;
 use App\Events\AuctionUpdatedEvent;
 use App\Http\Requests\AuctionFormRequest;
 use http\Exception;
@@ -67,7 +68,7 @@ class AuctionController extends Controller
             'price' => $request['minimum-amount'],
             'duration' => $request['auction-duration'],
         ]);
-        event(new AuctionCreated($auction));
+        event(new AuctionCreatedEvent($auction));
     }
 
     /**

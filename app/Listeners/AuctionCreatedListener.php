@@ -3,13 +3,15 @@
 namespace App\Listeners;
 
 use App\Auction;
-use App\Events\AuctionCreated;
+
+use App\Events\AuctionCreatedEvent;
+use App\Notifications\AuctionCreatedNotification;
 use App\Notifications\AuctionUpdatedNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Auth;
 
-class AuctionCreated
+class AuctionCreatedListener
 {
     public $auction;
     /**
@@ -28,9 +30,9 @@ class AuctionCreated
      * @param  AuctionCreated  $event
      * @return void
      */
-    public function handle(AuctionCreated $event)
+    public function handle(AuctionCreatedEvent $event)
     {
         $user = Auth::user();
-        $user->notify(new AuctionCreated($event->auction));
+        $user->notify(new AuctionCreatedNotification($event->auction));
     }
 }

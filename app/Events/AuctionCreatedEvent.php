@@ -2,15 +2,14 @@
 
 namespace App\Events;
 
+use App\Auction;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class AuctionCreated implements ShouldBroadcast
+class AuctionCreatedEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,9 +18,9 @@ class AuctionCreated implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Auction $auction)
     {
-        //
+        $this->auction = $auction;
     }
 
     /**
