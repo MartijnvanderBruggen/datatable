@@ -20,6 +20,10 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('categories','CategoryController');
     Route::get('/messages','MessageController@show');
 
+    Route::resource('/users', 'UserController');
+    Route::get('lalala/{id}', 'UserController@getData')->name('lalala');
+
+
 });
 
 

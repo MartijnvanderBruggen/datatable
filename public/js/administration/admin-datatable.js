@@ -103,7 +103,10 @@ $(document).ready(function () {
       name: 'id'
     }, {
       data: 'name',
-      name: 'name'
+      name: 'name',
+      render: function render(data, type, row) {
+        return '<a class="show-user" data-user-id="' + row.id + '" href="javascript:;">' + row.name + '</a>';
+      }
     }]
   });
 });

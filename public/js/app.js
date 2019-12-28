@@ -58326,7 +58326,7 @@ Vue.component('select-category', {
 Vue.component('message', {
   data: function data() {
     return {
-      message: 'hi'
+      message: 'No recent events...'
     };
   },
   mounted: function mounted() {
@@ -58336,7 +58336,6 @@ Vue.component('message', {
     init: function init() {
       var _this2 = this;
 
-      console.log('in init function');
       Echo.channel('auctions').listen('AuctionUpdatedEvent', function (message) {
         _this2.message = message;
       });

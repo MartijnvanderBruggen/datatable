@@ -34,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::component('modals.create_auction_modal','modal');
         Blade::component('layouts.components.navbar','navbar');
+        Blade::component('modals.user_modal','user_modal');
     }
 }

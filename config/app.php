@@ -27,7 +27,7 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
-
+    'free' => env('FREE_TIME',24),
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
