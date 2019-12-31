@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card mt-2 mb-2">
                 <div class="card-header">Latest Changes to auctions...</div>
 
                 <div class="card-body">
@@ -36,23 +36,6 @@
             </div>
         </div>
     </div>
-</div>
-
 
 @endsection
-@modal
-@endmodal
-@push('scripts')
-    <script>
-        $("#save-auction").click((e) => {
-            //@todo:validate
-            let formValues = $("#create-auction").serialize();
-            axios.post('/auctions',formValues).then(function(response){
-                console.log(response);
-            }).catch(function(error){
-                console.log(error);
-            });
-        });
-    </script>
 
-@endpush

@@ -50,7 +50,7 @@ class AuctionCreatedNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'auction' => $this->auction,
         ];
     }
 }

@@ -46,29 +46,31 @@ class User extends Authenticatable
         return $this->hasMany('App\Auction');
     }
 
-    public function freeTimeRemaining($startDate, $weeklyHours)
+    public function freeTimeRemaining()
     {
         $date = Carbon::createFromDate($this->start_date);
-        $year = $date->year;
+        $start_year = $date->year;
         $current_year = Carbon::now()->year;
         $freeTime = config('FREE_TIME', 24);
         $periods = $this->hours;
         $parts = [];
 
-
-        if ($date !== $date->copy()->startOfYear() && $date->year === (Carbon::now())->year) {
+        if ($date !== $date->copy()->startOfYear() && $start_year === $current_year) {
             foreach($periods as $period)
             {
                 $months = $this->calculatePeriod($period->from, $period->to);
-                $parts[] = $freeTime * ($period->weekly_hours / 40) * ($months  / 12); //5*1.6
+                $parts[] = $freeTime * ($period->weekly_hours / 40) * ($months  / 12);
             }
 
             return array_sum($parts);
         } //entire year in service
         else {
-            return $freeTime * ($weeklyHours / 40);
+            foreach($periods as $period)
+            {
+                $parts[] = $freeTime * ($period->weekly_hours / 40);
+            }
+            return array_sum($parts);
         }
-
     }
 
     public function calculatePeriod($from, $to)

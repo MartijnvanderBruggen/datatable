@@ -29,17 +29,23 @@
 <body>
 @navbar
 @endnavbar
-<div class="container">
-    @yield('content')
+<div id="app">
+    <div class="container">
+        @yield('content')
+    </div>
 </div>
-
+@modal
+@endmodal
 <!-- jQuery -->
 <script src="{{asset('js/app.js')}}"></script>
 <!-- DataTables -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="{{asset('js/create-auction.js')}}"></script>
 <!-- App scripts -->
 @stack('scripts')
+
+
 </body>
 </html>

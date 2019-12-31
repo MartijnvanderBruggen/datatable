@@ -58326,7 +58326,8 @@ Vue.component('select-category', {
 Vue.component('message', {
   data: function data() {
     return {
-      message: 'No recent events...'
+      message: null,
+      id: ''
     };
   },
   mounted: function mounted() {
@@ -58336,12 +58337,13 @@ Vue.component('message', {
     init: function init() {
       var _this2 = this;
 
-      Echo.channel('auctions').listen('AuctionUpdatedEvent', function (message) {
+      Echo.channel('auctions').listen('.App\\Events\\AuctionCreatedEvent', function (message) {
         _this2.message = message;
+        _this2.id = message.auction.id;
       });
     }
   },
-  template: '<div >' + '<p>{{ message }}</p>' + '</div>'
+  template: '<div class="mt-2" >' + '<p v-if="message">Auction #{{id}} created!</p>' + '<p v-else>No recent changes...</p>' + '</div>'
 });
 app = new Vue({
   el: '#app'

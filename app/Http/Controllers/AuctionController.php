@@ -70,7 +70,6 @@ class AuctionController extends Controller
         ]);
         event(new AuctionCreatedEvent($auction));
     }
-
     /**
      * Display the specified resource.
      *

@@ -1,5 +1,6 @@
 {
     "/js/administration/admin-datatable.js": "/js/administration/admin-datatable.js",
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/create-auction.js": "/js/create-auction.js"
 }

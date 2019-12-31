@@ -8752,5 +8752,7 @@ a.text-dark:hover {
 html,
 body {
   background: rgba(0, 0, 0, 0.5);
+  background-image: url("/images/background.png");
+  background-size: cover;
 }
 

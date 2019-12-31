@@ -27,7 +27,7 @@ class AuctionCreatedListener
     /**
      * Handle the event.
      *
-     * @param  AuctionCreated  $event
+     * @param  AuctionCreatedEvent  $event
      * @return void
      */
     public function handle(AuctionCreatedEvent $event)

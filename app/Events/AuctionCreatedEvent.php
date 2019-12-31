@@ -13,13 +13,16 @@ class AuctionCreatedEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $auction;
+
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Auction $auction
      */
     public function __construct(Auction $auction)
     {
+
         $this->auction = $auction;
     }
 
@@ -30,6 +33,12 @@ class AuctionCreatedEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('auction-created');
+        return new Channel('auctions');
+    }
+
+    public function broadcastWith(){
+        return [
+          'auction' => $this->auction
+        ];
     }
 }

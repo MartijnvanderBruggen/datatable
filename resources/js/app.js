@@ -42,7 +42,8 @@ Vue.component('select-category', {
 Vue.component('message', {
     data: function(){
         return {
-            message: 'No recent events...',
+            message: null,
+            id: '',
         }
     },
     mounted() {
@@ -51,8 +52,10 @@ Vue.component('message', {
     methods:{
         init: function() {
             Echo.channel('auctions')
-                .listen( 'AuctionUpdatedEvent',(message) => {
+                .listen( '.App\\Events\\AuctionCreatedEvent',(message) => {
+
                     this.message = message;
+                    this.id = message.auction.id;
                 });
         }
     },
@@ -60,8 +63,9 @@ Vue.component('message', {
 
 
     template:
-        '<div >' +
-            '<p>{{ message }}</p>' +
+        '<div>' +
+            '<p v-if="message">Auction #{{id}} created!</p>' +
+            '<p v-else>No recent changes...</p>' +
         '</div>'
 });
 app = new Vue({ el: '#app' });

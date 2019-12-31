@@ -19,11 +19,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/admin', 'AdminPanelController@index')->name('admin');
     Route::resource('categories','CategoryController');
     Route::get('/messages','MessageController@show');
-
     Route::resource('/users', 'UserController');
     Route::get('lalala/{id}', 'UserController@getData')->name('lalala');
-
-
 });
 
 
